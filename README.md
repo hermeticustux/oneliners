@@ -3,7 +3,7 @@ A collection of useful bash one-liners (yet another one of these repos).
 
 ## Contents 
 - [MySQL] (#mysql)
-- [sed] (#sed)
+- [sed, find, search and misc] (#sed-find-search-and-misc)
 
 ## MySQL
 
@@ -37,7 +37,7 @@ Change the password for a given user:
 
     set password for 'your_user'@'your_hostname' = password('your_password');
 
-## sed
+## sed, find, search, and misc
 
 [[back to top](#contents)]
 
@@ -56,3 +56,25 @@ Search and replace recursively within a directory:
 Exclue word from command output using piping:
 
     sed 's/\<word\>//g’”
+
+Find the largest 50 files in Linux filesystem:
+
+    find . -type f -print0 | xargs -0 du | sort -n | tail -50 | cut -f2 | xargs -I{} du -sh {}
+
+Fin the largest 50 directories in Linux filesystem: 
+
+    find . -type d -print0 | xargs -0 du | sort -n | tail -50 | cut -f2 | xargs -I{} du -sh {}
+
+Print recursive contents of folder:
+
+    find /folder/path -printf "%P\n"
+
+Tar a bunch of files at once:
+
+    find . -maxdepth 1 -name "*.txt" -exec tar -rf test.tar {} \;
+
+Search for big files: 
+
+     find / -size +50000  -exec ls -lahg {} \;
+
+
