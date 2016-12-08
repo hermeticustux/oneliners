@@ -3,7 +3,8 @@ A collection of useful CLI one-liners for *nix servers (yet another one of these
 
 ## Contents 
 - [MySQL] (#mysql)
-- [sed, find, search and misc] (#sed-find-search-and-misc)
+- [perl] (#perl)
+- [sed, find, and misc] (#sed-find-and-misc)
 
 ## MySQL
 
@@ -37,7 +38,21 @@ Change the password for a given user:
 
     set password for 'your_user'@'your_hostname' = password('your_password');
 
-## sed, find, search, and misc
+## perl
+
+Command line history with timestamps (zsh):
+
+    perl -lne 'm#: (\d+):\d+;(.+)# && printf "%s :: %s\n",scalar localtime $1,$2' $HISTFILE
+
+Remove specific /etc/hosts file entry: 
+
+    perl -pi -e "s,^hostipaddress.*\n$,," /etc/hosts
+
+Remove all blank lines:
+
+    perl -ne 'print unless /^$/'
+
+## sed, find, and misc
 
 [[back to top](#contents)]
 
@@ -77,4 +92,18 @@ Search for big files:
 
      find / -size +50000  -exec ls -lahg {} \;
 
+List log-in activity on server:
 
+    egrep -r '(login|attempt|auth|success):' /var/log
+
+List all groups on system:
+
+    cut -d: -f1 /etc/group
+
+Rsync (directories only) to working directory:
+
+    rsync -a -f"+ */" -f"- *" your_user@10.10.10.10:/folder/path .
+
+Render gource video:
+
+    gource --multi-sampling -1024x768 --output-ppm-stream - --disable-progress --hide mouse -a 0.015 --camera-mode overview --logo MoinMoin/static/common/moinmoin_alpha.png --max-file-lag=0.01 --max-user-speed 2000 -s 0.15 --stop-at-end --title "MoinMoin 2.0-dev Repository - Activity Visualisation" --user-friction 0.1 --background-colour 000000 --start-position 0.35782339652293488 |  ffmpeg -y -b 3000k -r 60 -f image2pipe -vcodec ppm  -i - -vcodec libvpx -b 3000K -r 25 gourcevid.mkv
