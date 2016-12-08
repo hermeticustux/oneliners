@@ -4,7 +4,7 @@ A collection of useful CLI one-liners for *nix servers (yet another one of these
 ## Contents 
 - [MySQL] (#mysql)
 - [perl] (#perl)
-- [sed, find, and misc] (#sed-find-and-misc)
+- [sed, find, grep and misc] (#sed-find-grep-and-misc)
 
 ## MySQL
 
@@ -52,7 +52,7 @@ Remove all blank lines:
 
     perl -ne 'print unless /^$/'
 
-## sed, find, and misc
+## sed, find, grep and misc
 
 [[back to top](#contents)]
 
