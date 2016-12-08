@@ -1,5 +1,5 @@
-# Bash One-Liners
-A collection of useful bash one-liners (yet another one of these repos).
+# CLI One-Liners
+A collection of useful CLI one-liners for *nix servers (yet another one of these repos).
 
 ## Contents 
 - [MySQL] (#mysql)
