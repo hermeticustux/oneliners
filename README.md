@@ -1,8 +1,9 @@
-# CLI One-Liners
-A collection of useful CLI one-liners for *nix servers (yet another one of these repos).
+# Bash One-Liners
+A collection of useful bash one-liners (yet another one of these repos).
 
 ## Contents 
 - [MySQL] (#mysql)
+- [sed] (#sed)
 
 ## MySQL
 
@@ -36,4 +37,22 @@ Change the password for a given user:
 
     set password for 'your_user'@'your_hostname' = password('your_password');
 
+## sed
 
+[[back to top](#contents)]
+
+Check public IP of server:
+
+    curl -s checkip.dyndns.org | sed -e 's/.*Current IP Address: //' -e 's/<.*$//'  or curl http://ipecho.net/plain; echo
+
+Search and replace recursively: 
+
+    grep -rl "string_0" ./ | xargs sed -i 's/string_0/string_1/g'
+
+Search and replace recursively within a directory:
+
+    grep -rl dir * | xargs sed -i 's/string_0/string_1/g'
+
+Exclue word from command output using piping:
+
+    sed 's/\<word\>//g’”
